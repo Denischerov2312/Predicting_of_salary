@@ -5,16 +5,15 @@ VERSION = 2.0
 
 
 def predict_rub_salary_for_superjob(vacancy):
-    if vacancy['currency'] != 'rub':
-        return None
-    salary_from = vacancy['payment_from']
-    salary_to = vacancy['payment_to']
-    if salary_from > 0 and salary_to > 0:
-        return (salary_to + salary_from) // 2
-    elif salary_from > 0:
-        return salary_from * 1.2
-    elif salary_to > 0:
-        return salary_to * 0.8
+    if vacancy['currency'] == 'rub':
+        salary_from = vacancy['payment_from']
+        salary_to = vacancy['payment_to']
+        if salary_from > 0 and salary_to > 0:
+            return (salary_to + salary_from) // 2
+        elif salary_from > 0:
+            return salary_from * 1.2
+        elif salary_to > 0:
+            return salary_to * 0.8
 
 
 def get_vacancies_features(vacancies):

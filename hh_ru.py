@@ -25,16 +25,15 @@ def get_vacancies(language='python'):
 
 def predict_rub_salary_for_hh(vacancy):
     salary = vacancy['salary']
-    if salary is None or salary['currency'] != 'RUR':
-        return None
-    salary_from = salary['from']
-    salary_to = salary['to']
-    if salary_from and salary_to:
-        return (salary_to + salary_from) // 2
-    elif salary_from:
-        return salary_from * 1.2
-    elif salary_to:
-        return salary_to * 0.8
+    if salary and salary['currency'] == 'RUR':
+        salary_from = salary['from']
+        salary_to = salary['to']
+        if salary_from and salary_to:
+            return (salary_to + salary_from) // 2
+        elif salary_from:
+            return salary_from * 1.2
+        elif salary_to:
+            return salary_to * 0.8
 
 
 def get_vacancies_features(vacancies):
