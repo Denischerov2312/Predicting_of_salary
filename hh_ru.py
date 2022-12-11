@@ -1,5 +1,4 @@
 import requests
-from pprint import pprint
 
 
 def get_vacancies(language='python'):
@@ -62,11 +61,3 @@ def get_hh_vacancies_features_by_languages():
         vacancies_features = get_vacancies_features(vacancies)
         vacancies_features_by_languages[language] = vacancies_features
     return vacancies_features_by_languages
-
-
-def main():
-    pprint(get_hh_vacancies_features_by_languages())
-
-
-if __name__ == '__main__':
-    main()
