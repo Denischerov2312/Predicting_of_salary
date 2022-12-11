@@ -1,10 +1,10 @@
 import os
 
-from super_Job_ru import get_superjob_vacancies_features_by_languages
-from hh_ru import get_hh_vacancies_features_by_languages
-
 from terminaltables import AsciiTable
 from dotenv import load_dotenv
+
+from super_Job_ru import get_superjob_vacancies_features_by_languages
+from hh_ru import get_hh_vacancies_features_by_languages
 
 
 def create_table_data(vacancies_features):
