@@ -29,13 +29,22 @@ def get_vacancies_features(vacancies):
     vacancies_features = {
         'found': len(vacancies),
         'processed': vacancies_processed,
-        'average_salary': int(average_salary), 
+        'average_salary': int(average_salary),
     }
     return vacancies_features
 
 
 def get_superjob_vacancies_features_by_languages(secret_key):
-    languages = ['python', 'JavaScript', 'Java', 'Ruby', 'PHP', 'C++', 'C#', 'Go']
+    languages = [
+        'python',
+        'JavaScript',
+        'Java',
+        'Ruby',
+        'PHP',
+        'C++',
+        'C#',
+        'Go'
+        ]
     vacancies_features_by_languages = {}
     for language in languages:
         vacancies = get_vacancies(secret_key, language)
@@ -65,7 +74,6 @@ def get_vacancies(secret_key, language='python'):
 
         total_page = page_response.json()['total']
         page += 1
-        
         for vacancy in page_response.json()['objects']:
             vacancies.append(vacancy)
     return vacancies

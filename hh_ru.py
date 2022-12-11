@@ -48,13 +48,22 @@ def get_vacancies_features(vacancies):
     vacancies_features = {
         'found': len(vacancies),
         'processed': vacancies_processed,
-        'average_salary': int(average_salary), 
+        'average_salary': int(average_salary),
     }
     return vacancies_features
 
 
 def get_hh_vacancies_features_by_languages():
-    languages = ['python', 'JavaScript', 'Java', 'Ruby', 'PHP', 'C++', 'C#', 'Go']
+    languages = [
+        'python',
+        'JavaScript',
+        'Java',
+        'Ruby',
+        'PHP',
+        'C++',
+        'C#',
+        'Go'
+        ]
     vacancies_features_by_languages = {}
     for language in languages:
         vacancies = get_vacancies(language)

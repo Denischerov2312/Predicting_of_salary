@@ -9,10 +9,18 @@ from hh_ru import get_hh_vacancies_features_by_languages
 
 def create_table_data(vacancies_features):
     table_data = [
-        ['Язык программирования', 'Найдено вакансий', 'Обработано вакансий', 'Средняя зарплата'],
+        [
+            'Язык программирования',
+            'Найдено вакансий',
+            'Обработано вакансий',
+            'Средняя зарплата'
+        ],
     ]
     for language, features in vacancies_features.items():
-        line = [language, features['found'], features['processed'], features['average_salary']]
+        line = [
+            language, features['found'],
+            features['processed'],
+            features['average_salary']]
         table_data.append(line)
     return table_data
 
