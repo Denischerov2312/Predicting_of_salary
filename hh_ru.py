@@ -6,9 +6,10 @@ def get_vacancies(language='python'):
     total_pages = 1
     vacancies = []
     while page < total_pages:
+        Moscow_index = 1
         params = {
             'text': f'программист {language}',
-            'area': 1,
+            'area': Moscow_index,
             'page': page
         }
         url = 'https://api.hh.ru/vacancies/'

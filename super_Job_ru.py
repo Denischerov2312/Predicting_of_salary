@@ -58,11 +58,12 @@ def get_vacancies(secret_key, language='python'):
     vacancies = []
     while page < total_page:
         url = f'https://api.superjob.ru/{VERSION}/vacancies/'
+        development_and_programming_index = 48
         params = {
             'count': 100,
             'page': page,
-            'catalogues': 48,
-            'town': 4,
+            'catalogues': development_and_programming_index,
+            'town': 'Москва',
             'keyword': language,
         }
         headers = {
