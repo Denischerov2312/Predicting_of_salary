@@ -7,7 +7,7 @@ from super_Job_ru import get_superjob_vacancies_features_by_languages
 from hh_ru import get_hh_vacancies_features_by_languages
 
 
-def create_table_data(vacancies_features):
+def get_table_data(vacancies_features):
     table_data = [
         [
             'Язык программирования',
@@ -32,13 +32,13 @@ def create_table(table_data, title='Vacancies Moscow'):
 
 def show_hh_table():
     vacancies_features = get_hh_vacancies_features_by_languages()
-    table_data = create_table_data(vacancies_features)
+    table_data = get_table_data(vacancies_features)
     print(create_table(table_data, 'HeadHunter Moscow'))
 
 
 def show_superjob_table(secret_key):
     vacancies_features = get_superjob_vacancies_features_by_languages(secret_key)
-    table_data = create_table_data(vacancies_features)
+    table_data = get_table_data(vacancies_features)
     print(create_table(table_data, 'SuperJob Moscow'))
 
 
