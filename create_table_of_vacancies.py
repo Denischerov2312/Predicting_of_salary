@@ -18,7 +18,8 @@ def get_table_data(vacancies_features):
     ]
     for language, features in vacancies_features.items():
         line = [
-            language, features['found'],
+            language,
+            features['found'],
             features['processed'],
             features['average_salary']]
         table_data.append(line)
