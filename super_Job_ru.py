@@ -1,19 +1,18 @@
 import requests
 
+from api_vacancies import predict_rub_salary
+
 
 VERSION = 2.0
 
 
 def predict_rub_salary_for_superjob(vacancy):
     if vacancy['currency'] == 'rub':
-        salary_from = vacancy['payment_from']
-        salary_to = vacancy['payment_to']
-        if salary_from > 0 and salary_to > 0:
-            return (salary_to + salary_from) // 2
-        elif salary_from > 0:
-            return salary_from * 1.2
-        elif salary_to > 0:
-            return salary_to * 0.8
+        payment_from = vacancy['payment_from']
+        payment_to = vacancy['payment_to']
+        salary_from = payment_from if payment_from > 0 else None
+        salary_to = payment_to if payment_to > 0 else None
+        return predict_rub_salary(salary_from, salary_to)
 
 
 def get_vacancies_features(vacancies):
@@ -72,8 +71,9 @@ def get_vacancies(secret_key, language='python'):
         page_response = requests.get(url, params=params, headers=headers)
         page_response.raise_for_status()
 
-        total_page = page_response.json()['total']
+        response_json = page_response.json()
+        total_page = response_json['total']
         page += 1
-        for vacancy in page_response.json()['objects']:
+        for vacancy in response_json['objects']:
             vacancies.append(vacancy)
     return vacancies

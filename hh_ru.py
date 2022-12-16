@@ -1,5 +1,7 @@
 import requests
 
+from api_vacancies import predict_rub_salary
+
 
 def get_vacancies(language='python'):
     page = 0
@@ -16,10 +18,11 @@ def get_vacancies(language='python'):
         page_response = requests.get(url, params=params)
         page_response.raise_for_status()
 
-        total_pages = page_response.json()['pages']
+        response_json = page_response.json()
+        total_pages = response_json['pages']
         page += 1
 
-        for vanancy in page_response.json()['items']:
+        for vanancy in response_json['items']:
             vacancies.append(vanancy)
     return vacancies
 
@@ -29,20 +32,16 @@ def predict_rub_salary_for_hh(vacancy):
     if salary and salary['currency'] == 'RUR':
         salary_from = salary['from']
         salary_to = salary['to']
-        if salary_from and salary_to:
-            return (salary_to + salary_from) // 2
-        elif salary_from:
-            return salary_from * 1.2
-        elif salary_to:
-            return salary_to * 0.8
+        return predict_rub_salary(salary_from, salary_to)
 
 
 def get_vacancies_features(vacancies):
     vacancies_processed = 0
     vacancies_salary_sum = 0
     for vacancy in vacancies:
-        if predict_rub_salary_for_hh(vacancy):
-            vacancies_salary_sum += predict_rub_salary_for_hh(vacancy)
+        predictable_salary = predict_rub_salary_for_hh(vacancy)
+        if predictable_salary:
+            vacancies_salary_sum += predictable_salary
             vacancies_processed += 1
     average_salary = vacancies_salary_sum // vacancies_processed
     vacancies_features = {
