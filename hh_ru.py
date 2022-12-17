@@ -35,6 +35,11 @@ def predict_rub_salary_for_hh(vacancy):
         return predict_rub_salary(salary_from, salary_to)
 
 
+def calculate_average(sum, processed):
+    average_salary = sum // processed if processed > 0 else sum
+    return average_salary
+
+
 def get_vacancies_features(vacancies):
     vacancies_processed = 0
     vacancies_salary_sum = 0
@@ -43,7 +48,7 @@ def get_vacancies_features(vacancies):
         if predictable_salary:
             vacancies_salary_sum += predictable_salary
             vacancies_processed += 1
-    average_salary = vacancies_salary_sum // vacancies_processed
+    average_salary = calculate_average(vacancies_salary_sum, vacancies_processed)
     vacancies_features = {
         'found': len(vacancies),
         'processed': vacancies_processed,
