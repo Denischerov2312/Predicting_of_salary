@@ -20,8 +20,9 @@ def get_vacancies_features(vacancies):
     vacancies_salary_sum = 0
     for vacancy in vacancies:
         average_salary = 0
-        if predict_rub_salary_for_superjob(vacancy):
-            vacancies_salary_sum += predict_rub_salary_for_superjob(vacancy)
+        predictable_salary = predict_rub_salary_for_superjob(vacancy)
+        if predictable_salary:
+            vacancies_salary_sum += predictable_salary
             vacancies_processed += 1
             average_salary = vacancies_salary_sum // vacancies_processed
     vacancies_features = {
