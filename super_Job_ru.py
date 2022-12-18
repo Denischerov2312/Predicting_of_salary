@@ -7,11 +7,9 @@ VERSION = 2.0
 
 
 def predict_rub_salary_for_superjob(vacancy):
+    salary_from = vacancy['payment_from']
+    salary_to = vacancy['payment_to']
     if vacancy['currency'] == 'rub':
-        payment_from = vacancy['payment_from']
-        payment_to = vacancy['payment_to']
-        salary_from = payment_from if payment_from > 0 else None
-        salary_to = payment_to if payment_to > 0 else None
         return predict_rub_salary(salary_from, salary_to)
 
 
