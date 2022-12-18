@@ -54,7 +54,7 @@ def get_superjob_vacancies_features_by_languages(secret_key):
 def get_vacancies(secret_key, language='python'):
     page = 0
     total_page = 1
-    vacancies = []
+    total_vacancies = []
     while page < total_page:
         url = f'https://api.superjob.ru/{VERSION}/vacancies/'
         development_and_programming_index = 48
@@ -71,9 +71,9 @@ def get_vacancies(secret_key, language='python'):
         page_response = requests.get(url, params=params, headers=headers)
         page_response.raise_for_status()
 
-        response_json = page_response.json()
-        total_page = response_json['total']
+        vacancies = page_response.json()
+        total_page = vacancies['total']
         page += 1
-        for vacancy in response_json['objects']:
-            vacancies.append(vacancy)
-    return vacancies
+        for vacancy in vacancies['objects']:
+            total_vacancies.append(vacancy)
+    return total_vacancies
