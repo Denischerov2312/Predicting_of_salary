@@ -7,8 +7,8 @@ from super_Job_ru import get_superjob_vacancies_features_by_languages
 from hh_ru import get_hh_vacancies_features_by_languages
 
 
-def get_vacancies_tabular_data(vacancies_features):
-    vacancies_tabular_data = [
+def get_vacancies_statistics(vacancies_features):
+    vacancies_statistics = [
         [
             'Язык программирования',
             'Найдено вакансий',
@@ -22,31 +22,31 @@ def get_vacancies_tabular_data(vacancies_features):
             features['found'],
             features['processed'],
             features['average_salary']]
-        vacancies_tabular_data.append(line)
-    return vacancies_tabular_data
+        vacancies_statistics.append(line)
+    return vacancies_statistics
 
 
-def create_table(vacancies_tabular_data, title='Vacancies Moscow'):
-    table = AsciiTable(vacancies_tabular_data, title)
+def create_table(table_data, title='Vacancies Moscow'):
+    table = AsciiTable(table_data, title)
     return table.table
 
 
 def show_hh_table():
     vacancies_features = get_hh_vacancies_features_by_languages()
-    vacancies_tabular_data = get_vacancies_tabular_data(vacancies_features)
-    print(create_table(vacancies_tabular_data, 'HeadHunter Moscow'))
+    statistics = get_vacancies_statistics(vacancies_features)
+    print(create_table(statistics, 'HeadHunter Moscow'))
 
 
 def show_superjob_table(secret_key):
     vacancies_features = get_superjob_vacancies_features_by_languages(secret_key)
-    vacancies_tabular_data = get_vacancies_tabular_data(vacancies_features)
-    print(create_table(vacancies_tabular_data, 'SuperJob Moscow'))
+    statistics = get_vacancies_statistics(vacancies_features)
+    print(create_table(statistics, 'SuperJob Moscow'))
 
 
 def main():
     load_dotenv()
-    super_job_secret_key = os.environ['SUPERJOB_SECRET_KEY']
-    show_superjob_table(super_job_secret_key)
+    superjob_secret_key = os.environ['SUPERJOB_SECRET_KEY']
+    show_superjob_table(superjob_secret_key)
     show_hh_table()
 
 
