@@ -47,7 +47,7 @@ def get_vacancies_features(vacancies):
     vacancies_features = {
         'found': len(vacancies),
         'processed': vacancies_processed,
-        'average_salary': int(average_salary),
+        'average_salary': average_salary,
     }
     return vacancies_features
 
