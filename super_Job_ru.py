@@ -1,6 +1,6 @@
 import requests
 
-from api_vacancies import predict_rub_salary
+from salary import predict_rub_salary
 
 
 VERSION = 2.0
