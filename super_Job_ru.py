@@ -22,11 +22,11 @@ def get_vacancies_features(vacancies):
         if predictable_salary:
             salary_sum += predictable_salary
             processed += 1
-            average_salary = salary_sum // processed
+            average_salary = salary_sum / processed
     vacancies_features = {
         'found': len(vacancies),
         'processed': processed,
-        'average_salary': average_salary,
+        'average_salary': int(average_salary),
     }
     return vacancies_features
 
