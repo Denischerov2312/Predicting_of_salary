@@ -29,10 +29,11 @@ def get_vacancies(language='python'):
 
 def predict_rub_salary_for_hh(vacancy):
     salary = vacancy['salary']
-    if salary and salary['currency'] == 'RUR':
-        salary_from = salary['from']
-        salary_to = salary['to']
-        return predict_rub_salary(salary_from, salary_to)
+    if not salary or salary['currency'] != 'RUR':
+        return
+    salary_from = salary['from']
+    salary_to = salary['to']
+    return predict_rub_salary(salary_from, salary_to)
 
 
 def get_vacancies_features(vacancies):
