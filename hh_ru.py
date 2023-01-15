@@ -18,11 +18,11 @@ def get_vacancies(language='python'):
         page_response = requests.get(url, params=params)
         page_response.raise_for_status()
 
-        response_json = page_response.json()
-        total_pages = response_json['pages']
+        vacancies_of_page = page_response.json()
+        total_pages = vacancies_of_page['pages']
         page += 1
 
-        for vanancy in response_json['items']:
+        for vanancy in vacancies_of_page['items']:
             vacancies.append(vanancy)
     return vacancies
 
