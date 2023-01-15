@@ -17,12 +17,11 @@ def get_vacancies_features(vacancies):
     processed = 0
     salary_sum = 0
     for vacancy in vacancies:
-        average_salary = 0
         predictable_salary = predict_rub_salary_for_superjob(vacancy)
         if predictable_salary:
             salary_sum += predictable_salary
             processed += 1
-            average_salary = salary_sum / processed
+    average_salary = salary_sum / processed if processed else salary_sum
     vacancies_features = {
         'found': len(vacancies),
         'processed': processed,
